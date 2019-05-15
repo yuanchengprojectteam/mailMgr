@@ -1,5 +1,6 @@
 package com.yc.mailMgr.bean;
 
+
 import javax.persistence.*;
 import javax.validation.constraints.NotEmpty;
 

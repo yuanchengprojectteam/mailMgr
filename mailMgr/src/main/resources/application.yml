@@ -52,7 +52,7 @@ spring:
 logging:
   level:
     root: ERROR
-     com.yc.mailMgr: DEBUG
+    com.yc.mailMgr: DEBUG
     
   #redis配置  
 redis:

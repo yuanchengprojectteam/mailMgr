@@ -1,4 +1,4 @@
-package  com.yc.mailMgr.dao;
+package com.yc.mailMgr.dao;
 
 import com.yc.mailMgr.bean.Gtype;
 import com.yc.mailMgr.bean.GtypeExample;

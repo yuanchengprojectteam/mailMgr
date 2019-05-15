@@ -1,5 +1,6 @@
 package com.yc.mailMgr.bean;
 
+
 import java.util.ArrayList;
 import java.util.List;
 

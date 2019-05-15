@@ -1,4 +1,5 @@
-package com.yc.mailMgr.bean;
+package  com.yc.mailMgr.bean;
+
 
 import javax.persistence.*;
 

@@ -19,12 +19,20 @@
 
 </script>
 	    <table class="easyui-datagrid" title="DataGrid Complex Toolbar" style="width:700px;height:250px"
-            data-options="rownumbers:true,singleSelect:true,url:'datagrid_data1.json',method:'get',toolbar:'#tb',footer:'#ft',fit:'true'">
+            data-options="rownumbers:true,
+            singleSelect:true,
+            url:'AllOrder',
+            method:'post',
+            toolbar:'#tb',
+            footer:'#ft',
+           	pagination: 'true',
+            fit:'true'
+           ">
         <thead>
             <tr>
-                <th data-options="field:'orderid',width:80,align:'left'">订单编号</th>
-                <th data-options="field:'goods',width:300,align:'left'">商品</th>
-                <th data-options="field:'money',width:80,align:'left'">订单金额</th>
+                <th data-options="field:'id',width:80,align:'left'">订单编号</th>
+                <th data-options="field:'name',width:300,align:'left'">商品</th>
+                <th data-options="field:'totalprice',width:80,align:'left'">订单金额</th>
                 <th data-options="field:'ordertime',width:80,align:'left'">下单时间</th>
                 <th data-options="field:'address',width:350,align:'left'">配送地址</th>
                 <th data-options="field:'maijia',width:80,align:'left'">买家 </th>
@@ -36,8 +44,10 @@
     <div id="tb" style="padding:2px 5px;">
         从: <input class="easyui-datebox" style="width:110px">
         到: <input class="easyui-datebox" style="width:110px">
+        订单编号:<input class="easyui-TextBox" style="width:110px">
         状态: 
-        <select class="easyui-combobox" panelHeight="auto" style="width:100px">
+        <select class="easyui-combobox" panelHeight="auto" style="width:110px">
+        	<option value=""></option>
             <option value="all">全部</option>
             <option value="dfh">待发货</option>
             <option value="psz">配送中</option>

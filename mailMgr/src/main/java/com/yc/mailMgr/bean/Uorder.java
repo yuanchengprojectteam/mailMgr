@@ -28,8 +28,16 @@ public class Uorder {
 	private User user;
 	/*private Orderdetail details;*/
 	
+	private String endtime;
 	
 	
+	@Transient
+	public String getEndtime() {
+		return endtime;
+	}
+	public void setEndtime(String endtime) {
+		this.endtime = endtime;
+	}
 	@Column(name="visiable",length=11)
 	public String getVisiable() {
 		return visiable;

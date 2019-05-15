@@ -10,16 +10,16 @@
 			connectionURL="jdbc:mysql://127.0.0.1/tcmail" userId="root" password="a">
 		</jdbcConnection>
 		<!-- 实体类包名 -->
-		<javaModelGenerator targetPackage=" com.yc.mailMgr.bean"
+		<javaModelGenerator targetPackage="com.yc.mailMgr.bean"
 			targetProject="src/main/java">
 		</javaModelGenerator>
 		<!-- Dao类包名 -->
-		<sqlMapGenerator targetPackage=" com.yc.mailMgr.dao"
+		<sqlMapGenerator targetPackage="com.yc.mailMgr.dao"
 			targetProject="src/main/java">
 		</sqlMapGenerator>
 
 		<javaClientGenerator type="XMLMAPPER"
-			targetPackage=" com.yc.mailMgr.dao" targetProject="src/main/java">
+			targetPackage="com.yc.mailMgr.dao" targetProject="src/main/java">
 		</javaClientGenerator>
 		
 		

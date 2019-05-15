@@ -5,12 +5,12 @@
 <head id="Head1">
 	<meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
     <title>商家后台</title>
-    <link href="Css/default.css" rel="stylesheet" type="text/css" />
-    <link rel="stylesheet" type="text/css" href="js/themes/default/easyui.css" />
-    <link rel="stylesheet" type="text/css" href="js/themes/icon.css" />
-    <script type="text/javascript" src="js/jquery-1.4.4.min.js"></script>
-    <script type="text/javascript" src="js/jquery.easyui.min.1.2.2.js"></script>
-	<script type="text/javascript" src='js/outlook2.js'> </script>
+    <link href="../Css/default.css" rel="stylesheet" type="text/css" />
+    <link rel="stylesheet" type="text/css" href="../js/themes/default/easyui.css" />
+    <link rel="stylesheet" type="text/css" href="../js/themes/icon.css" />
+    <script type="text/javascript" src="../js/jquery-1.4.4.min.js"></script>
+    <script type="text/javascript" src="../js/jquery.easyui.min.1.2.2.js"></script>
+	<script type="text/javascript" src='../js/outlook2.js'> </script>
     <script type="text/javascript">
 	 var _menus = {"menus":[
 						{"menuid":"1","icon":"icon-sys","menuname":"商品",
@@ -21,7 +21,7 @@
 									
 								]
 						},{"menuid":"8","icon":"icon-sys","menuname":"订单",
-							"menus":[{"menuid":"21","menuname":"订单管理","icon":"icon-nav","url":"orderMgr.html"}
+							"menus":[{"menuid":"21","menuname":"订单管理","icon":"icon-nav","url":"orderMgr"}
 									
 								]
 						},{"menuid":"56","icon":"icon-sys","menuname":"退货管理",
@@ -113,13 +113,13 @@
 <body class="easyui-layout" style="overflow-y: hidden"  scroll="no">
 <noscript>
 <div style=" position:absolute; z-index:100000; height:2046px;top:0px;left:0px; width:100%; background:white; text-align:center;">
-    <img src="images/noscript.gif" alt='抱歉，请开启脚本支持！' />
+    <img src="../images/noscript.gif" alt='抱歉，请开启脚本支持！' />
 </div></noscript>
     <div region="north" split="true" border="false" style="overflow: hidden; height: 30px;
-        background: url(images/layout-browser-hd-bg.gif) #7f99be repeat-x center 50%;
+        background: url(../images/layout-browser-hd-bg.gif) #7f99be repeat-x center 50%;
         line-height: 20px;color: #fff; font-family: Verdana, 微软雅黑,黑体">
         <span style="float:right; padding-right:20px;" class="head">欢迎 疯狂秀才 <a href="#" id="editpass">修改密码</a> <a href="#" id="loginOut">安全退出</a></span>
-        <span style="padding-left:10px; font-size: 16px; "><img src="images/blocks.gif" width="20" height="20" align="absmiddle" /> 商家后台</span>
+        <span style="padding-left:10px; font-size: 16px; "><img src="../images/blocks.gif" width="20" height="20" align="absmiddle" /> 商家后台</span>
     </div>
     <div region="south" split="true" style="height: 30px; background: #D2E0F2; ">
         <div class="footer">                    </div>

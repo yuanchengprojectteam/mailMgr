@@ -57,7 +57,7 @@
 		<div style="margin-bottom:5px">
 			<a href="#" class="easyui-linkbutton" iconCls="icon-add" plain="true" onclick="add()"></a>
 			<a href="#" class="easyui-linkbutton" iconCls="icon-edit" plain="true" onclick="edit()"></a>
-			<a href="#" class="easyui-linkbutton" iconCls="icon-remove" plain="true" onclick="delete()"></a>
+			<a href="#" class="easyui-linkbutton" iconCls="icon-remove" plain="true" onclick="deleteOrder()"></a>
 		</div>
 		<div>
 			
@@ -119,10 +119,9 @@
 	</div>
 	
 </body>
+<script type="text/javascript">
 
-<script>
-
-function delete(){
+function deleteOrder(){
 	var row= $('#dg').datagrid('getSelected');
 	if(row == null){
 		alert("请选择要删除的商品！");
