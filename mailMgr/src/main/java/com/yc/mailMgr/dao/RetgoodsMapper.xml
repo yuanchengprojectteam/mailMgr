@@ -1,0 +1,260 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace=" com.yc.mailMgr.dao.RetgoodsMapper">
+  <resultMap id="BaseResultMap" type=" com.yc.mailMgr.bean.Retgoods">
+    <id column="id" jdbcType="INTEGER" property="id" />
+    <result column="date" jdbcType="VARCHAR" property="date" />
+    <result column="money" jdbcType="INTEGER" property="money" />
+    <result column="odetailid" jdbcType="INTEGER" property="odetailid" />
+    <result column="reason" jdbcType="VARCHAR" property="reason" />
+    <result column="statu" jdbcType="VARCHAR" property="statu" />
+    <result column="descr" jdbcType="VARCHAR" property="descr" />
+    <result column="rimage" jdbcType="VARCHAR" property="rimage" />
+  </resultMap>
+  <sql id="Example_Where_Clause">
+    <where>
+      <foreach collection="oredCriteria" item="criteria" separator="or">
+        <if test="criteria.valid">
+          <trim prefix="(" prefixOverrides="and" suffix=")">
+            <foreach collection="criteria.criteria" item="criterion">
+              <choose>
+                <when test="criterion.noValue">
+                  and ${criterion.condition}
+                </when>
+                <when test="criterion.singleValue">
+                  and ${criterion.condition} #{criterion.value}
+                </when>
+                <when test="criterion.betweenValue">
+                  and ${criterion.condition} #{criterion.value} and #{criterion.secondValue}
+                </when>
+                <when test="criterion.listValue">
+                  and ${criterion.condition}
+                  <foreach close=")" collection="criterion.value" item="listItem" open="(" separator=",">
+                    #{listItem}
+                  </foreach>
+                </when>
+              </choose>
+            </foreach>
+          </trim>
+        </if>
+      </foreach>
+    </where>
+  </sql>
+  <sql id="Update_By_Example_Where_Clause">
+    <where>
+      <foreach collection="example.oredCriteria" item="criteria" separator="or">
+        <if test="criteria.valid">
+          <trim prefix="(" prefixOverrides="and" suffix=")">
+            <foreach collection="criteria.criteria" item="criterion">
+              <choose>
+                <when test="criterion.noValue">
+                  and ${criterion.condition}
+                </when>
+                <when test="criterion.singleValue">
+                  and ${criterion.condition} #{criterion.value}
+                </when>
+                <when test="criterion.betweenValue">
+                  and ${criterion.condition} #{criterion.value} and #{criterion.secondValue}
+                </when>
+                <when test="criterion.listValue">
+                  and ${criterion.condition}
+                  <foreach close=")" collection="criterion.value" item="listItem" open="(" separator=",">
+                    #{listItem}
+                  </foreach>
+                </when>
+              </choose>
+            </foreach>
+          </trim>
+        </if>
+      </foreach>
+    </where>
+  </sql>
+  <sql id="Base_Column_List">
+    id, date, money, odetailid, reason, statu, descr, rimage
+  </sql>
+  <select id="selectByExample" parameterType=" com.yc.mailMgr.bean.RetgoodsExample" resultMap="BaseResultMap">
+    select
+    <if test="distinct">
+      distinct
+    </if>
+    <include refid="Base_Column_List" />
+    from retgoods
+    <if test="_parameter != null">
+      <include refid="Example_Where_Clause" />
+    </if>
+    <if test="orderByClause != null">
+      order by ${orderByClause}
+    </if>
+  </select>
+  <select id="selectByPrimaryKey" parameterType="java.lang.Integer" resultMap="BaseResultMap">
+    select 
+    <include refid="Base_Column_List" />
+    from retgoods
+    where id = #{id,jdbcType=INTEGER}
+  </select>
+  <delete id="deleteByPrimaryKey" parameterType="java.lang.Integer">
+    delete from retgoods
+    where id = #{id,jdbcType=INTEGER}
+  </delete>
+  <delete id="deleteByExample" parameterType=" com.yc.mailMgr.bean.RetgoodsExample">
+    delete from retgoods
+    <if test="_parameter != null">
+      <include refid="Example_Where_Clause" />
+    </if>
+  </delete>
+  <insert id="insert" parameterType=" com.yc.mailMgr.bean.Retgoods">
+    <selectKey keyProperty="id" order="BEFORE" resultType="java.lang.Integer">
+      SELECT LAST_INSERT_ID()
+    </selectKey>
+    insert into retgoods (id, date, money, 
+      odetailid, reason, statu, 
+      descr, rimage)
+    values (#{id,jdbcType=INTEGER}, #{date,jdbcType=VARCHAR}, #{money,jdbcType=INTEGER}, 
+      #{odetailid,jdbcType=INTEGER}, #{reason,jdbcType=VARCHAR}, #{statu,jdbcType=VARCHAR}, 
+      #{descr,jdbcType=VARCHAR}, #{rimage,jdbcType=VARCHAR})
+  </insert>
+  <insert id="insertSelective" parameterType=" com.yc.mailMgr.bean.Retgoods">
+    <selectKey keyProperty="id" order="BEFORE" resultType="java.lang.Integer">
+      SELECT LAST_INSERT_ID()
+    </selectKey>
+    insert into retgoods
+    <trim prefix="(" suffix=")" suffixOverrides=",">
+      id,
+      <if test="date != null">
+        date,
+      </if>
+      <if test="money != null">
+        money,
+      </if>
+      <if test="odetailid != null">
+        odetailid,
+      </if>
+      <if test="reason != null">
+        reason,
+      </if>
+      <if test="statu != null">
+        statu,
+      </if>
+      <if test="descr != null">
+        descr,
+      </if>
+      <if test="rimage != null">
+        rimage,
+      </if>
+    </trim>
+    <trim prefix="values (" suffix=")" suffixOverrides=",">
+      #{id,jdbcType=INTEGER},
+      <if test="date != null">
+        #{date,jdbcType=VARCHAR},
+      </if>
+      <if test="money != null">
+        #{money,jdbcType=INTEGER},
+      </if>
+      <if test="odetailid != null">
+        #{odetailid,jdbcType=INTEGER},
+      </if>
+      <if test="reason != null">
+        #{reason,jdbcType=VARCHAR},
+      </if>
+      <if test="statu != null">
+        #{statu,jdbcType=VARCHAR},
+      </if>
+      <if test="descr != null">
+        #{descr,jdbcType=VARCHAR},
+      </if>
+      <if test="rimage != null">
+        #{rimage,jdbcType=VARCHAR},
+      </if>
+    </trim>
+  </insert>
+  <select id="countByExample" parameterType=" com.yc.mailMgr.bean.RetgoodsExample" resultType="java.lang.Long">
+    select count(*) from retgoods
+    <if test="_parameter != null">
+      <include refid="Example_Where_Clause" />
+    </if>
+  </select>
+  <update id="updateByExampleSelective" parameterType="map">
+    update retgoods
+    <set>
+      <if test="record.id != null">
+        id = #{record.id,jdbcType=INTEGER},
+      </if>
+      <if test="record.date != null">
+        date = #{record.date,jdbcType=VARCHAR},
+      </if>
+      <if test="record.money != null">
+        money = #{record.money,jdbcType=INTEGER},
+      </if>
+      <if test="record.odetailid != null">
+        odetailid = #{record.odetailid,jdbcType=INTEGER},
+      </if>
+      <if test="record.reason != null">
+        reason = #{record.reason,jdbcType=VARCHAR},
+      </if>
+      <if test="record.statu != null">
+        statu = #{record.statu,jdbcType=VARCHAR},
+      </if>
+      <if test="record.descr != null">
+        descr = #{record.descr,jdbcType=VARCHAR},
+      </if>
+      <if test="record.rimage != null">
+        rimage = #{record.rimage,jdbcType=VARCHAR},
+      </if>
+    </set>
+    <if test="_parameter != null">
+      <include refid="Update_By_Example_Where_Clause" />
+    </if>
+  </update>
+  <update id="updateByExample" parameterType="map">
+    update retgoods
+    set id = #{record.id,jdbcType=INTEGER},
+      date = #{record.date,jdbcType=VARCHAR},
+      money = #{record.money,jdbcType=INTEGER},
+      odetailid = #{record.odetailid,jdbcType=INTEGER},
+      reason = #{record.reason,jdbcType=VARCHAR},
+      statu = #{record.statu,jdbcType=VARCHAR},
+      descr = #{record.descr,jdbcType=VARCHAR},
+      rimage = #{record.rimage,jdbcType=VARCHAR}
+    <if test="_parameter != null">
+      <include refid="Update_By_Example_Where_Clause" />
+    </if>
+  </update>
+  <update id="updateByPrimaryKeySelective" parameterType=" com.yc.mailMgr.bean.Retgoods">
+    update retgoods
+    <set>
+      <if test="date != null">
+        date = #{date,jdbcType=VARCHAR},
+      </if>
+      <if test="money != null">
+        money = #{money,jdbcType=INTEGER},
+      </if>
+      <if test="odetailid != null">
+        odetailid = #{odetailid,jdbcType=INTEGER},
+      </if>
+      <if test="reason != null">
+        reason = #{reason,jdbcType=VARCHAR},
+      </if>
+      <if test="statu != null">
+        statu = #{statu,jdbcType=VARCHAR},
+      </if>
+      <if test="descr != null">
+        descr = #{descr,jdbcType=VARCHAR},
+      </if>
+      <if test="rimage != null">
+        rimage = #{rimage,jdbcType=VARCHAR},
+      </if>
+    </set>
+    where id = #{id,jdbcType=INTEGER}
+  </update>
+  <update id="updateByPrimaryKey" parameterType=" com.yc.mailMgr.bean.Retgoods">
+    update retgoods
+    set date = #{date,jdbcType=VARCHAR},
+      money = #{money,jdbcType=INTEGER},
+      odetailid = #{odetailid,jdbcType=INTEGER},
+      reason = #{reason,jdbcType=VARCHAR},
+      statu = #{statu,jdbcType=VARCHAR},
+      descr = #{descr,jdbcType=VARCHAR},
+      rimage = #{rimage,jdbcType=VARCHAR}
+    where id = #{id,jdbcType=INTEGER}
+  </update>
+</mapper>

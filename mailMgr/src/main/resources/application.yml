@@ -1,0 +1,93 @@
+spring:
+  # Spring数据源配置
+  datasource:
+    url: jdbc:mysql://127.0.0.1/tcmail
+    driverClassName: com.mysql.jdbc.Driver
+    username: root
+    password: a
+  session:
+    store-type: none
+    
+    #    文件上传配置
+  resources: 
+    staticLocations:
+      - file:/d:/rcvFile/
+      - classpath:/static/
+      - classpath:/public/
+
+
+  # jpa持久层框架 配置  
+  jpa: 
+    database: MYSQL
+    show-sql: true
+    generate-ddl: true
+    hibernate:
+    # 第一次使用后请将该行注释,该配置为自动建表，如不小心使用会导致数据库表数据全部被删除
+      #ddl-auto: create
+      naming_strategy: org.hibernate.cfg.ImprovedNamingStrategy 
+    properties: 
+      hibernate:
+        dialect: org.hibernate.dialect.MySQL5InnoDBDialect
+        current_session_context_class: org.springframework.orm.hibernate5.SpringSessionContext
+      
+     
+  
+  # SpringMVC配置
+  mvc:
+    view:
+      prefix: WEB-INF/jsp/
+      suffix: .jsp
+      
+  # 发送邮件配置
+  mail: 
+    # 邮件服务器地址
+    host: smtp.qq.com
+    username: 1371490392@qq.com
+    password: pcxzfldpeqtsgifb
+    default-encoding: UTF-8
+    formMail:
+      addr: 1371490392@qq.com
+   
+  # log4j配置 
+logging:
+  level:
+    root: ERROR
+     com.yc.mailMgr: DEBUG
+    
+  #redis配置  
+redis:
+  hostname: 127.0.0.1
+  port: 6379
+  password:
+  timeout: 10000
+  maxIdle: 300
+  maxTotal: 1000
+  maxWaitMillis: 1000
+  minEvictableIdleTimeMillis: 300000
+  numTestsPerEvictionRun: 1024
+  timeBetweenEvictionRunsMillis: 30000
+  testOnBorrow: true
+  testWhileIdle: true
+
+  #短信验证码配置
+alMsg:
+  product: Dysmsapi
+  domail: dysmsapi.aliyuncs.com
+  accessKeyId: 
+  accessKeySecret: 
+  endpoint: http://31269193.mns.cn-beijing.aliyuncs.com/
+
+  #阿里云OSS对象存储服务
+lximage:
+  endpoint:  oss-cn-beijing.aliyuncs.com
+  keyid:  LTAIITWT4M4azCLU
+  keysecret:  9d7R60FOUvIuKAOKZDMS7nAwA7777X
+  bucketname1:  doki-l
+  filehost:  UploadFile
+  
+  #分页配置
+  pagehelper:
+    helper-dialect: mysql
+    reasonable: true
+    support-methods-arguments: true
+    params: 
