@@ -4,9 +4,13 @@ import java.util.Set;
 
 import javax.persistence.*;
 
+import com.fasterxml.jackson.annotation.JsonIgnoreProperties;
+
 @Entity
 @Table(name="user",catalog="tcmail")
-public class User {
+@JsonIgnoreProperties(value = { "handler" })
+public class User implements java.io.Serializable{
+	private static final long serialVersionUID = 1L;
 	private Integer id;
 	private String name;
 	private String account;

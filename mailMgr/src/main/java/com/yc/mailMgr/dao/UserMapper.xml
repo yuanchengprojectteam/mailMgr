@@ -26,6 +26,13 @@
     <result column="familynum" jdbcType="INTEGER" property="familynum" />
     <result column="income" jdbcType="VARCHAR" property="income" />
   </resultMap>
+  
+  <select id="selectById" resultMap="BaseResultMap">
+  	select
+  	<include refid="Base_Column_List"/>
+  	from user where id = #{id}
+  </select>
+  
   <sql id="Example_Where_Clause">
     <!--
       WARNING - @mbg.generated

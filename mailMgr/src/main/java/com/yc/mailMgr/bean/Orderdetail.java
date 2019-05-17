@@ -2,9 +2,13 @@ package com.yc.mailMgr.bean;
 
 import javax.persistence.*;
 
+import com.fasterxml.jackson.annotation.JsonIgnoreProperties;
+
 @Entity
 @Table(name="orderdetail",catalog="tcmail")
-public class Orderdetail {
+@JsonIgnoreProperties(value = { "handler" })
+public class Orderdetail implements java.io.Serializable{
+	private static final long serialVersionUID = 1L;
 	private Integer id;
 	private Integer orderid;
 	private  Integer gid;

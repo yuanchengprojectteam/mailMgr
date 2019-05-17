@@ -15,6 +15,12 @@
     <result column="type" jdbcType="VARCHAR" property="type" />
     <result column="uid" jdbcType="INTEGER" property="uid" />
   </resultMap>
+  
+   <select id="selectShopByID" resultMap="BaseResultMap">
+  	select * 
+  	from shop where id = #{id}
+  </select>
+  
   <sql id="Example_Where_Clause">
     <!--
       WARNING - @mbg.generated

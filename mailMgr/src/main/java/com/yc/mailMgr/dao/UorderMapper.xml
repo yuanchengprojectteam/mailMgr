@@ -19,6 +19,7 @@
     <result column="recivetime" jdbcType="VARCHAR" property="recivetime" />
     <result column="visiable" jdbcType="VARCHAR" property="visiable" />
     <association property="addr" column="aid" select="com.yc.mailMgr.dao.AddressMapper.selectWithAddr" fetchType="lazy"></association>
+	<association property="user" column="uid" select="com.yc.mailMgr.dao.UserMapper.selectById" fetchType="lazy"></association>
 	<collection property="details" column="id" 
 		    select="com.yc.mailMgr.dao.OrderdetailMapper.selectWithGoods" 
 		    fetchType="lazy">
@@ -61,13 +62,15 @@
   		<if test="order.orderstatu != null">
   			and orderstatu = #{order.orderstatu}
   		</if>
-  		<if test="order.paystatu != null">
-  			and paystatu = #{order.paystatu}
-  		</if>
   		<if test="order.ordertime != null and order.endtime != null">
   			and ordertime  between #{order.ordertime} and #{order.endtime}
   		</if>
-  		
+  		<if test="order.ordertime != null and order.endtime == null">
+  			and ordertime &gt; #{order.ordertime} 
+  		</if>
+  		<if test="order.ordertime == null and order.endtime != null">
+  			and ordertime &lt; #{order.ordertime} 
+  		</if>
   	</where>
   </select>
  
