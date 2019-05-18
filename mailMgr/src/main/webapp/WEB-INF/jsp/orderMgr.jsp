@@ -161,6 +161,7 @@ function goodsData(val,row,index){
 		}else{
 			goodsName = goodsName + "," +row.details[i].goods.name+row.details[i].goods.color+row.details[i].goods.size;
 		}
+		
 	}
     return goodsName;
     	
