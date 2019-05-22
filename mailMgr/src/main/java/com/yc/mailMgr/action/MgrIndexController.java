@@ -19,7 +19,6 @@ import com.yc.mailMgr.bean.ShopReturnGoods;
 import com.yc.mailMgr.biz.MgrShopReturnBiz;
 
 @Controller
-@RequestMapping("mgr")
 public class MgrIndexController {
 	
 	@Resource

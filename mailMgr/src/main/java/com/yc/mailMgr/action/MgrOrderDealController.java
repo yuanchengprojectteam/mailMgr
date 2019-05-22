@@ -18,7 +18,6 @@ import com.yc.mailMgr.biz.BizException;
 import com.yc.mailMgr.biz.MgrOrderDealBiz;
 
 @Controller
-@RequestMapping("mgr")
 public class MgrOrderDealController {
 	
 	@Resource
