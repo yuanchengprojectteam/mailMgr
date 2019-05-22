@@ -8,7 +8,7 @@ import org.springframework.boot.test.context.SpringBootTest;
 import org.springframework.test.context.junit4.SpringRunner;
 
 import com.yc.mailMgr.bean.Uorder;
-import com.yc.mailMgr.biz.OrderDealBiz;
+import com.yc.mailMgr.biz.MgrOrderDealBiz;
 import com.yc.mailMgr.dao.UorderMapper;
 
 @RunWith(SpringRunner.class)
@@ -20,7 +20,7 @@ public class MailMgrApplicationTests {
 	private UorderMapper uom;
 	
 	@Resource
-	private OrderDealBiz odBiz;
+	private MgrOrderDealBiz odBiz;
 	@Test
 	public void contextLoads() {
 		Uorder uorder = new Uorder();
