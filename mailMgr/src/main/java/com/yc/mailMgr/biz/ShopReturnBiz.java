@@ -30,7 +30,7 @@ public class ShopReturnBiz {
 	private  ShopReturnG  sr;
 	@Resource
 	private  RetgoodsMapper  rg;
-	
+
 	public List<ShopReturnGoods> selectBySid(Integer sid) {
 		return  sr.selectBySid(sid);
 	}
@@ -81,13 +81,13 @@ public class ShopReturnBiz {
 				list=	  sr.selectToDeal7(sid);
 			}
 		}
-		
+
 		PageData  pag = new PageData();
 		pag.setRows(p.getResult());
 		pag.setTotal(p.getTotal());
-		
+
 		return pag;
-		
+
 	}
 
 
@@ -98,7 +98,7 @@ public class ShopReturnBiz {
 		r.setStatu("处理中");
 		rg.updateByExampleSelective(r, example);
 	}
-	
+
 	public void Save1(int rid) {
 		RetgoodsExample example=new RetgoodsExample();
 		example.createCriteria().andIdEqualTo(rid);
