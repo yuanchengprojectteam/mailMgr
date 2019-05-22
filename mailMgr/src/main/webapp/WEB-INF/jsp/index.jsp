@@ -15,8 +15,8 @@
 	 var _menus = {"menus":[
 						{"menuid":"1","icon":"icon-sys","menuname":"商品",
 							"menus":[
-									{"menuid":"12","menuname":"商品管理","icon":"icon-add","url":"addGoods.html"},
-									{"menuid":"13","menuname":"类别管理","icon":"icon-users","url":"addgoodstype.html"},
+								{"menuid":"12","menuname":"商品管理","icon":"icon-add","url":"addGoods"},
+								{"menuid":"13","menuname":"类别管理","icon":"icon-users","url":"addGoodsType"},
 									{"menuid":"14","menuname":"热门商品","icon":"icon-role","url":"upanddown.html"},
 									
 								]

@@ -1,17 +1,10 @@
 package com.yc.mailMgr.bean;
 
-import java.util.List;
-import java.util.Set;
-
 import javax.persistence.*;
-
-import com.fasterxml.jackson.annotation.JsonIgnoreProperties;
 
 @Entity
 @Table(name="goods",catalog="tcmail")
-@JsonIgnoreProperties(value = { "handler" })
-public class Goods implements java.io.Serializable{
-	private static final long serialVersionUID = 1L;
+public class Goods {
 	private Integer id;
 	private Integer tid;
 	private Integer sid;
@@ -27,7 +20,29 @@ public class Goods implements java.io.Serializable{
 	private Shop shop;
 	private Gtype type;
 	private Car car;
+	private String typeName;
+	private String msgImage;
 	
+	
+	
+	@Transient
+	public String getMsgImage() {
+		return msgImage;
+	}
+
+	public void setMsgImage(String msgImage) {
+		this.msgImage = msgImage;
+	}
+
+	@Transient
+	public String getTypeName() {
+		return typeName;
+	}
+
+	public void setTypeName(String typeName) {
+		this.typeName = typeName;
+	}
+
 	@Id
 	@GeneratedValue(strategy=GenerationType.IDENTITY)
 	@Column(name="id",nullable=false,unique=true)

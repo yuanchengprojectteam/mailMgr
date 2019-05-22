@@ -11,21 +11,31 @@ import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.ResponseBody;
+import org.springframework.web.bind.annotation.SessionAttributes;
 
 import com.fasterxml.jackson.annotation.JsonCreator.Mode;
 import com.fasterxml.jackson.databind.deser.std.DateDeserializers.DateDeserializer;
 import com.yc.mailMgr.bean.PageData;
 import com.yc.mailMgr.bean.ShopReturnGoods;
+import com.yc.mailMgr.bean.User;
 import com.yc.mailMgr.biz.MgrShopReturnBiz;
+import com.yc.mailMgr.dao.UserMapper;
 
 @Controller
+@SessionAttributes(names= {"loginedUser"})
 public class MgrIndexController {
 	
 	@Resource
 	private  MgrShopReturnBiz  srBiz;
 	
+	@Resource
+	UserMapper um;
+	
 	@GetMapping("index")
-	public String toIndex() {
+	public String toIndex(Model model) {
+		User user = um.selectByPrimaryKey(3);
+		
+		model.addAttribute("loginedUser",user);
 		return "index";
 	}
 	

@@ -22,7 +22,65 @@
 				alert("请选择要修改的商品！");
 				return;
 			}
+			$('#fe').form('load',row);
 			$('#E').window('open');
+		}
+		
+		function query(){
+			$('#dg').datagrid('load',{
+				name:$("#name").textbox("getValue"),
+				price:$("#price").textbox("getValue"),
+				typeName:$("#typeName").textbox("getValue"),
+				regtime:$("#regtime").textbox("getValue"),
+			});
+		}
+		
+		
+		function save(){
+			$("#fm").form('submit',{
+				
+				success:function(data){
+					alert("添加成功！");
+					$("#w").window('close');
+					$('#dg').datagrid('reload');
+				}
+				
+			})
+		}
+		function deleteOrder(){
+			var row= $('#dg').datagrid('getSelected');
+			if(row == null){
+				alert("请选择要修改的商品！");
+				return;
+			}
+			var gid = row.id;
+			$.ajax({
+				type:"post",
+				url:"delectGood",
+				data:{"gid":gid},
+				success:function(data){
+					alert("删除成功！");
+					$("#w").window('close');
+					$('#dg').datagrid('reload');
+				},
+				error:function(e){
+					alert("删除失败！");
+				}
+				
+			});
+		}
+		
+		function updateGoods(){
+			$("#fe").form('submit',{
+				
+				success:function(data){
+					alert("修改成功！");
+					$("#E").window('close');
+					$('#dg').datagrid('reload');
+				}
+				
+			})
+			
 		}
 		
 	</script>
@@ -33,23 +91,31 @@
 			text-align: right; 
 		}
 	</style>
+	
+	
+	
 </head>
 <body>
 	<table id="dg" class="easyui-datagrid" title="商品列表" style="width:700px;height:250px"
-		 data-options="pagination:true,fitColumns:true,rownumbers:true,singleSelect:true,url:'datagrid_data1.json',method:'get',toolbar:'#tb',fit:true"
-		>
+		 data-options="pagination:true,
+		 fitColumns:true,
+		 rownumbers:true,
+		 singleSelect:true,
+		 url:'query',
+		 method:'get',toolbar:'#tb',
+		 fit:true" >
 		<thead>
 			<tr>
-				<th data-options="field:'itemid',width:80">商品ID</th>
-				<th data-options="field:'attr1',width:240">商品名称</th>
-				<th data-options="field:'productid',width:100">颜色</th>
-				<th data-options="field:'listprice',width:80,align:'right'">商品价格</th>
-				<th data-options="field:'unitcost',width:80,align:'right'">评论数</th>
-				<th data-options="field:'status',width:80,align:'center'">商品数量</th>
-				<th data-options="field:'status',width:80,align:'center'">商品的积分</th>
-				<th data-options="field:'status',width:80,align:'center'">尺寸</th>
-				<th data-options="field:'status',width:80,align:'center'">类型</th>
-				<th data-options="field:'attr1',width:240">上架时间</th>
+				<th data-options="field:'id',width:80">商品ID</th>
+				<th data-options="field:'name',width:240">商品名称</th>
+				<th data-options="field:'color',width:100">颜色</th>
+				<th data-options="field:'price',width:80,align:'right'">商品价格</th>
+				<th data-options="field:'commnum',width:80,align:'right'">评论数</th>
+				<th data-options="field:'num',width:80,align:'center'">商品数量</th>
+				<th data-options="field:'point',width:80,align:'center'">商品的积分</th>
+				<th data-options="field:'size',width:80,align:'center'">尺寸</th>
+				<th data-options="field:'tid',width:80,align:'center'">类型</th>
+				<th data-options="field:'regtime',width:240">上架时间</th>
 			</tr>
 		</thead>
 	</table>
@@ -61,11 +127,11 @@
 		</div>
 		<div>
 			
-			商品名称：<input  class="easyui-textbox" style="width:80px">
-			价格： <input  class="easyui-textbox" style="width:80px">
-			类型 <select class="easyui-combobox" panelHeight="auto" style="width:100px"></select>
-			上架时间： <input class="easyui-datebox" style="width:80px">
-			<a href="#" onclick="query" class="easyui-linkbutton" iconCls="icon-search">Search</a>
+			商品名称：<input  id="name" class="easyui-textbox" style="width:80px">
+			价格： <input  id="price" class="easyui-textbox" style="width:80px">
+			类型 <input id="typeName" class="easyui-combobox" name="dept"
+    				data-options="valueField:'id',textField:'text',url:'getdata'">
+			<a href="#" onclick="query()" class="easyui-linkbutton" iconCls="icon-search">Search</a>
 		</div>
 	</div>
 	
@@ -74,20 +140,21 @@
 		style="width:450px;height:375px;padding:5px;">
 		<div class="easyui-layout" data-options="fit:true">
 			<div data-options="region:'center'" style="padding:10px;text-align: center">
-				<form id="fm" method="post" action="">
-	    			<span  class="lab">商品名称：</span><input  class="easyui-textbox" name="name"><br>
-	    			<span  class="lab">商品颜色：</span><input  class="easyui-textbox" name="pwd"><br>
-	    			<span  class="lab">商品上架数量：</span><input  class="easyui-textbox" name="phone"><br>
-	    			<span  class="lab">商品的积分：</span><input  class="easyui-textbox" name="email"><br>
-	    			<span  class="lab">商品的价格：</span><input  class="easyui-textbox" name="company"><br>
-	    			<span  class="lab">商品类型：</span><select class="easyui-combobox" name="state" style="width:155px;"></select><br>
-	    			<span  class="lab">商品的尺寸：</span><input  class="easyui-textbox" name="address"><br>
-	    			<span  class="lab">商品图片：</span><input class="easyui-filebox" name="file1" data-options="prompt:'Choose a file...'" style="width:50%"><br>
-	    			<span  class="lab">商品详情：</span><input class="easyui-filebox" name="file1" data-options="prompt:'Choose a file...',separator:';',multiple:true" style="width:50%"><br>
+				<form id="fm" method="post" action="save">
+	    			<span  class="lab">商品名称：</span><input  id="addname" class="easyui-textbox" name="name"><br>
+	    			<span  class="lab">商品颜色：</span><input  id="addcolor" class="easyui-textbox" name="color"><br>
+	    			<span  class="lab">商品上架数量：</span><input id="addnum" class="easyui-textbox" name="num"><br>
+	    			<span  class="lab">商品的积分：</span><input  id="addpoint" class="easyui-textbox" name="point"><br>
+	    			<span  class="lab">商品的价格：</span><input  id="price" class="easyui-textbox" name="price"><br>
+	    			<span  class="lab">商品类型：</span><input id="typeName" class="easyui-combobox" name="tid"
+    				data-options="valueField:'id',textField:'text',url:'getdata'"><br>
+	    			<span  class="lab">商品的尺寸：</span><input id="addsize" class="easyui-textbox" name="size"><br>
+	    			<span  class="lab">商品图片：</span><input id="addimage" class="easyui-filebox" name="image" data-options="prompt:'Choose a file...'" style="width:50%"><br>
+	    			<span  class="lab">商品详情：</span><input id="typeimage" class="easyui-filebox" name="msgImage" data-options="prompt:'Choose a file...',separator:';',multiple:true" style="width:50%"><br>
 	    		</form>
 			</div>
 			<div data-options="region:'south',border:false" style="text-align:right;padding:5px 0 0;">
-				<a class="easyui-linkbutton" data-options="iconCls:'icon-ok'" href="javascript:void(0)"  style="width:80px">保存</a>
+				<a onclick="save()" class="easyui-linkbutton" data-options="iconCls:'icon-ok'" href="javascript:void(0)"  style="width:80px">保存</a>
 				<a class="easyui-linkbutton" data-options="iconCls:'icon-cancel'" href="javascript:void(0)" onclick="$('#w').window('close')" style="width:80px">取消</a>
 			</div>
 		</div>
@@ -98,21 +165,21 @@
 		style="width:450px;height:375px;padding:5px;">
 		<div class="easyui-layout" data-options="fit:true">
 			<div data-options="region:'center'" style="padding:10px;text-align: center">
-				<form id="" method="post" action="">
-	    			<span  class="lab">商品名称：</span><input  class="easyui-textbox" name="name"><br>
-	    			<span  class="lab">商品颜色：</span><input  class="easyui-textbox" name="pwd"><br>
-	    			<span  class="lab">商品上架数量：</span><input  class="easyui-textbox" name="phone"><br>
-	    			<span  class="lab">商品的积分：</span><input  class="easyui-textbox" name="email"><br>
-	    			<span  class="lab">商品的价格：</span><input  class="easyui-textbox" name="company"><br>
-	    			<span  class="lab">商品类型：</span><select class="easyui-combobox" name="state" style="width:155px;"></select><br>
-	    			<span  class="lab">商品的尺寸：</span><input  class="easyui-textbox" name="address"><br>
-	    			<span  class="lab">商品图片：</span><input class="easyui-filebox" name="file1" data-options="prompt:'Choose a file...'" style="width:50%"><br>
-	    			<span  class="lab">商品详情：</span><input class="easyui-filebox" name="file1" data-options="prompt:'Choose a file...',separator:';',multiple:true" style="width:50%" ><br>
-	    			
-	    		</form>
+				<form id="fe" method="post" action="updateGoods">
+					<input  id="addname" class="easyui-textbox" name="id" type="hidden">
+	    			<span  class="lab">商品名称：</span><input  id="addname" class="easyui-textbox" name="name"><br>
+	    			<span  class="lab">商品颜色：</span><input  id="addcolor" class="easyui-textbox" name="color"><br>
+	    			<span  class="lab">商品上架数量：</span><input id="addnum" class="easyui-textbox" name="num"><br>
+	    			<span  class="lab">商品的积分：</span><input  id="addpoint" class="easyui-textbox" name="point"><br>
+	    			<span  class="lab">商品的价格：</span><input  id="price" class="easyui-textbox" name="price"><br>
+	    			<span  class="lab">商品类型：</span><input id="typeName" class="easyui-combobox" name="tid"
+    				data-options="valueField:'id',textField:'text',url:'getdata'"><br>
+	    			<span  class="lab">商品的尺寸：</span><input id="addsize" class="easyui-textbox" name="size"><br>
+	    			<span  class="lab">商品图片：</span><input id="addimage" class="easyui-filebox" name="image" data-options="prompt:'Choose a file...'" style="width:50%"><br>
+	    			</form>
 			</div>
 			<div data-options="region:'south',border:false" style="text-align:right;padding:5px 0 0;">
-				<a class="easyui-linkbutton" data-options="iconCls:'icon-ok'" href="javascript:void(0)"  style="width:80px">保存</a>
+				<a onclick="updateGoods()" class="easyui-linkbutton" data-options="iconCls:'icon-ok'" href="javascript:void(0)"  style="width:80px">保存</a>
 				<a class="easyui-linkbutton" data-options="iconCls:'icon-cancel'" href="javascript:void(0)" onclick="$('E').window('close')" style="width:80px">取消</a>
 			</div>
 		</div>
@@ -121,30 +188,6 @@
 </body>
 <script type="text/javascript">
 
-function deleteOrder(){
-	var row= $('#dg').datagrid('getSelected');
-	if(row == null){
-		alert("请选择要删除的商品！");
-		return;
-	}else{
-		if(row){
-			$.messager.confirm('Confirm','Are you sure you want to destroy this goods?',function(r){
-				if (r){
-					$.post('destroy_user.php',{id:row.id},function(result){
-						if (result.success){
-							$('#dg').datagrid('reload');	// reload the user data
-						} else {
-							$.messager.show({	// show error message
-								title: 'Error',
-								msg: result.errorMsg
-							});
-						}
-					},'json');
-				}
-			});
-		}
-	}
-}
 		function submitForm(){
 			$('#ff').form('submit');
 		}

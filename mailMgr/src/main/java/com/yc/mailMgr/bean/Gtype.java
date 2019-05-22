@@ -12,10 +12,24 @@ public class Gtype {
 	private String name;
 	private Integer pid;
 	private Integer sunid;
+	private String pname;
+	private String sunname;
 	
 	private List<Gtype> childType;
 	
-	
+	@Transient
+	public String getPname() {
+		return pname;
+	}
+	public void setPname(String pname) {
+		this.pname = pname;
+	}
+	public String getSunname() {
+		return sunname;
+	}
+	public void setSunname(String sunname) {
+		this.sunname = sunname;
+	}
 	@Transient
 	public List<Gtype> getChildType() {
 		return childType;
