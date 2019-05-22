@@ -76,8 +76,9 @@ public class MgrIndexController {
 		}
 		
 		try {
+			System.out.println("============================"+u);
 			User  user=uBiz.login(u);
-			System.out.println("================");
+			System.out.println("+======================================"+user);
 			ShopExample  example=new ShopExample();
 			example.createCriteria().andUidEqualTo(user.getId());
 			List<Shop> shop=sMapper.selectByExample(example);

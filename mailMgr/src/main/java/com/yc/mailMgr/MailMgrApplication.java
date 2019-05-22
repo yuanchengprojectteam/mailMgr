@@ -11,6 +11,7 @@ import org.springframework.web.servlet.config.annotation.InterceptorRegistry;
 import org.springframework.web.servlet.config.annotation.WebMvcConfigurer;
 
 import com.github.pagehelper.PageHelper;
+import com.yc.mailMgr.config.FIlter;
 
 @SpringBootApplication
 @MapperScan(basePackages="com.yc.mailMgr.dao")
