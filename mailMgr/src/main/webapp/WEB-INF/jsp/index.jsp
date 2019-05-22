@@ -25,8 +25,8 @@
 									
 								]
 						},{"menuid":"56","icon":"icon-sys","menuname":"退货管理",
-							"menus":[{"menuid":"31","menuname":"订单售后","icon":"icon-nav","url":"mgr/WaitDeal?sid=5"},
-									{"menuid":"32","menuname":"售后订单","icon":"icon-nav","url":"mgr/AllReturn?sid=5"}
+							"menus":[{"menuid":"31","menuname":"订单售后","icon":"icon-nav","url":"WaitDeal?sid=${shop.id}"},
+									{"menuid":"32","menuname":"售后订单","icon":"icon-nav","url":"AllReturn?sid=${shop.id}"}
 								]
 						},{"menuid":"28","icon":"icon-sys","menuname":"评价管理",
 							"menus":[{"menuid":"41","menuname":"商品评价","icon":"icon-nav","url":"PingJia.html"},

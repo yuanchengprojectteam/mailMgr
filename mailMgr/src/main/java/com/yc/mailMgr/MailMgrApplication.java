@@ -3,15 +3,18 @@ package com.yc.mailMgr;
 import java.util.Properties;
 
 import org.mybatis.spring.annotation.MapperScan;
+import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.SpringApplication;
 import org.springframework.boot.autoconfigure.SpringBootApplication;
 import org.springframework.context.annotation.Bean;
+import org.springframework.web.servlet.config.annotation.InterceptorRegistry;
+import org.springframework.web.servlet.config.annotation.WebMvcConfigurer;
 
 import com.github.pagehelper.PageHelper;
 
 @SpringBootApplication
 @MapperScan(basePackages="com.yc.mailMgr.dao")
-public class MailMgrApplication {
+public class MailMgrApplication implements  WebMvcConfigurer{
 
 	public static void main(String[] args) {
 		SpringApplication.run(MailMgrApplication.class, args);
@@ -30,4 +33,12 @@ public class MailMgrApplication {
 	        return pageHelper;
 	     }
 
+	 @Autowired
+	    private FIlter filter;
+
+		@Override
+		public void addInterceptors(InterceptorRegistry registry) {
+			registry.addInterceptor(filter).excludePathPatterns("/","/login","/tologin","/css/**","/js/**","/houl/**","/images/**","/pie/**");
+			
+		}
 }

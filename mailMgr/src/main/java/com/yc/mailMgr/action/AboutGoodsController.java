@@ -53,7 +53,7 @@ public class AboutGoodsController {
 	
 	@RequestMapping("query")
 	@ResponseBody
-	public PageData query(@SessionAttribute("loginedUser") User user,Goods goods,int page,int rows){
+	public PageData query(@SessionAttribute("loginedAdmin") User user,Goods goods,int page,int rows){
 		GoodsExample ge = new GoodsExample();
 		PageData pag = new PageData();
 		Shop shop = agm.byUidQueryShop(user.getId());
@@ -109,7 +109,7 @@ public class AboutGoodsController {
 	
 	@RequestMapping("save")
 	@ResponseBody
-	public successMsg save(@SessionAttribute("loginedUser")User user,Goods good) {
+	public successMsg save(@SessionAttribute("loginedAdmin")User user,Goods good) {
 		successMsg msg = new successMsg();
 		Shop shop = agm.queryShop(user);
 		good.setSid(shop.getId());
