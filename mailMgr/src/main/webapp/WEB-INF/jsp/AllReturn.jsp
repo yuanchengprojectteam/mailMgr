@@ -77,7 +77,7 @@
 			从: <input id="startdate" class="easyui-datebox" style="width:80px">
 			到: <input id="enddate" class="easyui-datebox" style="width:80px">
 			订单状态: 
-			<select id="statu" class="easyui-combobox" panelHeight="auto" style="width:100px">
+			<select id="statu" class="easyui-combobox" panelHeight="auto" style="width:100px">			
 				<option value="已完成" >已完成</option>
 				<option value="所有">所有</option>
 				<option value="处理中">处理中</option>
