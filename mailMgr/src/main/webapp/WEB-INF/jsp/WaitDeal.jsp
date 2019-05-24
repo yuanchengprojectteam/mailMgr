@@ -13,21 +13,21 @@
     </head>
     <body>
        	<table class="easyui-datagrid" title="DataGrid Complex Toolbar" style="width:700px;height:250px"
-			data-options="rownumbers:true,singleSelect:true,url:'datagrid_data1.json',method:'get',toolbar:'#tb',fit:'true'">
+			data-options="rownumbers:true,singleSelect:true,url:'datagrid_data1.json',method:'get',toolbar:'#tb',fit:'true',fitColumns:true">
 		<thead>
 			<tr>
-			<th data-options="field:'status',width:60,align:'center'">退货单号</th>
-				<th data-options="field:'itemid',width:80">订单编号</th>
-				<th data-options="field:'productid',width:100">商品名</th>
-				<th data-options="field:'listprice',width:80,align:'right'">买家</th>
-				<th data-options="field:'unitcost',width:80,align:'right'">联系方式</th>
-				<th data-options="field:'attr1',width:240">处理状态</th>
+			<th data-options="field:'status',width:100,align:'center'">退货单号</th>
+				<th data-options="field:'itemid',width:100,align:'center'">订单编号</th>
+				<th data-options="field:'productid',width:100,align:'center'">商品名</th>
+				<th data-options="field:'listprice',width:100,align:'center'">买家</th>
+				<th data-options="field:'unitcost',width:100,align:'center'">联系方式</th>
+				<th data-options="field:'attr1',width:100,align:'center'">处理状态</th>
 			</tr>
 		</thead>
 	</table>
 	<div id="tb" style="padding:5px;height:auto">
 		<div style="margin-bottom:5px">
-			<a href="#" class="easyui-linkbutton" iconCls="icon-edit"   plain="true">处理</a>
+			<a href="#" class="easyui-linkbutton" iconCls="icon-edit"  onclick="$('#w').window('open')" plain="true">处理</a>
 		</div>
 		<div>
 			从: <input class="easyui-datebox" style="width:80px">
@@ -37,13 +37,14 @@
 				<option value="java">待处理</option>
 				<option value="c">处理中</option>
 			</select>
-			<a href="#" class="easyui-linkbutton" iconCls="icon-search">搜索</a>
+			退货单号:<input class="easyui-TextBox" style="width:110px" id="retid" name="id">
+			<a href="#" class="easyui-linkbutton" iconCls="icon-search">查询</a>
 		</div>
 	</div>
         
         
     <!-- 模态窗口 -->    
-    	<div id="w" class="easyui-window" title="Modal Window" data-options="modal:true,closed:false,iconCls:'icon-save'" style="width:300px;height:600px;padding:10px;">
+    	<div id="w" class="easyui-window" title="Modal Window" data-options="modal:true,closed:true,iconCls:'icon-save'" style="width:300px;height:600px;padding:10px;">
 		<b>订单编号:</b><em></em><br/><br/>
 		<b>订单金额:</b><em></em><br/><br/>
 		<b>退货原因:</b><br/>
