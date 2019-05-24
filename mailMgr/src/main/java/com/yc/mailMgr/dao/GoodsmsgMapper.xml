@@ -149,8 +149,7 @@
     <selectKey keyProperty="id" order="AFTER" resultType="java.lang.Integer">
       SELECT LAST_INSERT_ID()
     </selectKey>
-    insert into goodsmsg (color, sid, size, 
-      tid, gid)
+    insert into goodsmsg (color, sid, size,tid, gid)
     values (#{color,jdbcType=VARCHAR}, #{sid,jdbcType=INTEGER}, #{size,jdbcType=VARCHAR}, 
       #{tid,jdbcType=INTEGER}, #{gid,jdbcType=INTEGER})
   </insert>

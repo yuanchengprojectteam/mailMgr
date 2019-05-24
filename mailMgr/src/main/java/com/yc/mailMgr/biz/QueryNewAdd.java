@@ -10,6 +10,7 @@ import org.springframework.stereotype.Service;
 
 import com.yc.mailMgr.bean.Goods;
 import com.yc.mailMgr.bean.Goodsmsg;
+import com.yc.mailMgr.bean.GoodsmsgExample;
 import com.yc.mailMgr.dao.GoodsMapper;
 import com.yc.mailMgr.dao.GoodsmsgMapper;
 import com.yc.mailMgr.dao.GtypeMapper;
@@ -51,4 +52,19 @@ public class QueryNewAdd {
 		
 		return df.format(System.currentTimeMillis());
 	}
+
+	public Goodsmsg queryGoodsmsg(Goodsmsg msg1) {
+		// TODO Auto-generated method stub
+		GoodsmsgExample ge = new GoodsmsgExample();
+		ge.createCriteria().andColorEqualTo(msg1.getColor())
+		.andGidEqualTo(msg1.getGid())
+		.andTidEqualTo(msg1.getTid())
+		.andSidEqualTo(msg1.getSid())
+		.andSizeEqualTo(msg1.getSize());
+		List<Goodsmsg> list = gmsgM.selectByExample(ge);
+		
+		return list.get(0);
+	}
+	
+	
 }

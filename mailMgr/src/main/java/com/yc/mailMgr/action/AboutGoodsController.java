@@ -1,5 +1,6 @@
 package com.yc.mailMgr.action;
 
+import java.io.IOException;
 import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.List;
@@ -10,10 +11,14 @@ import javax.annotation.Resource;
 import org.springframework.stereotype.Controller;
 import org.springframework.transaction.annotation.Transactional;
 import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.ResponseBody;
 import org.springframework.web.bind.annotation.SessionAttribute;
 import org.springframework.web.bind.annotation.SessionAttributes;
+import org.springframework.web.multipart.MultipartFile;
 
+import com.aliyun.oss.ClientException;
+import com.aliyun.oss.OSSException;
 import com.github.pagehelper.Page;
 import com.github.pagehelper.PageHelper;
 import com.yc.mailMgr.bean.Goods;
@@ -22,6 +27,7 @@ import com.yc.mailMgr.bean.GoodsExample.Criteria;
 import com.yc.mailMgr.bean.Gtype;
 import com.yc.mailMgr.bean.GtypeExample;
 import com.yc.mailMgr.bean.GtypeSelect;
+import com.yc.mailMgr.bean.Image;
 import com.yc.mailMgr.bean.PageData;
 import com.yc.mailMgr.bean.Shop;
 import com.yc.mailMgr.bean.User;
@@ -33,6 +39,9 @@ import com.yc.mailMgr.dao.GtypeMapper;
 @Controller
 @Transactional
 public class AboutGoodsController {
+	
+	
+	
 	
 	@Resource
 	GoodsMapper gm;
@@ -109,15 +118,33 @@ public class AboutGoodsController {
 	
 	@RequestMapping("save")
 	@ResponseBody
-	public successMsg save(@SessionAttribute("loginedAdmin")User user,Goods good) {
+	public successMsg save(@SessionAttribute("loginedAdmin")User user
+			,Goods good
+			,@RequestParam("image1") MultipartFile file
+			,@RequestParam("msgImage1") MultipartFile file1) throws OSSException, ClientException, IOException {
 		successMsg msg = new successMsg();
 		Shop shop = agm.queryShop(user);
 		good.setSid(shop.getId());
-		int count = agm.insertGoods(good);
-		msg.setStatu(count);
+		agm.insertGoods(good,file,file1);
+		
 		msg.setMsg("添加成功！");
 		return msg;
 	}
+	
+	/*@RequestMapping("save1")
+	@ResponseBody	
+	public successMsg save1(@RequestParam("image1") MultipartFile file,
+			@RequestParam("msgImage1") MultipartFile file1
+			,@RequestParam("name")String name
+			,@SessionAttribute("loginedAdmin")User user) throws OSSException, ClientException, IOException {
+		successMsg msg = new successMsg();
+		agm.upFile(file,file1,name,user);
+		
+		msg.setMsg("添加成功！");
+		return msg;
+	}*/
+	
+	
 	
 	//delectGood
 	
@@ -201,6 +228,17 @@ public class AboutGoodsController {
 		successMsg msg = new successMsg();
 		agm.updateType(gtype);
 		msg.setMsg("修改成功！");
+		return msg;
+	}
+	
+	//addimage
+	
+	@RequestMapping("addimage")
+	@ResponseBody
+	public successMsg addimage(Goods good,@RequestParam("path") MultipartFile file) throws OSSException, ClientException, IOException {
+		successMsg msg = new successMsg();
+		agm.addImage(good,file);
+		msg.setMsg("添加成功！");
 		return msg;
 	}
 	

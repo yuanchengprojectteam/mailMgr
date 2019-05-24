@@ -16,15 +16,7 @@
 		function add(){
 			$('#w').window('open');
 		}
-		function edit(){
-			var row= $('#dg').datagrid('getSelected');
-			if(row == null){
-				alert("请选择要修改的商品！");
-				return;
-			}
-			$('#fe').form('load',row);
-			$('#E').window('open');
-		}
+		
 		
 		function query(){
 			$('#dg').datagrid('load',{
@@ -37,15 +29,26 @@
 		
 		
 		function save(){
-			$("#fm").form('submit',{
-				
+			var f=new FormData($("#fm")[0]);
+			 /* $("#fm").form('submit') ;  */
+			 
+			//alert(f);
+			$.ajax({
+				type:'post',
+				url:'save',
+				cache:false,
+				contentType: false,
+				processData: false,
+				dataType:"JSON",
+				data:f,
 				success:function(data){
 					alert("添加成功！");
 					$("#w").window('close');
 					$('#dg').datagrid('reload');
 				}
-				
-			})
+			});
+			
+			
 		}
 		function deleteOrder(){
 			var row= $('#dg').datagrid('getSelected');
@@ -81,6 +84,47 @@
 				
 			})
 			
+		}
+		
+		function addimage(){
+			
+			var fe = new FormData($("#adimg")[0]);
+			//alert(fe.path);
+			$.ajax({
+				type:"post",
+				url:"addimage",
+				cache:false,
+				contentType: false,
+				processData: false,
+				dataType:"JSON",
+				data:fe,
+				success:function(data){
+					alert("添加成功！");
+					$("#w").window('close');
+					$('#dg').datagrid('reload');
+				}
+			});
+			
+		}
+		
+		function edit(){
+			var row= $('#dg').datagrid('getSelected');
+			if(row == null){
+				alert("请选择要修改的商品！");
+				return;
+			}
+			$('#fe').form('load',row);
+			$('#E').window('open');
+		}
+		
+		function openImage(){
+			var row= $('#dg').datagrid('getSelected');
+			if(row == null){
+				alert("请选择添加的商品！");
+				return;
+			}
+			$('#adimg').form('load',row);
+			$('#AI').window('open');
 		}
 		
 	</script>
@@ -124,6 +168,7 @@
 			<a href="#" class="easyui-linkbutton" iconCls="icon-add" plain="true" onclick="add()"></a>
 			<a href="#" class="easyui-linkbutton" iconCls="icon-edit" plain="true" onclick="edit()"></a>
 			<a href="#" class="easyui-linkbutton" iconCls="icon-remove" plain="true" onclick="deleteOrder()"></a>
+			商品图片:<a href="#" class="easyui-linkbutton" iconCls="icon-add" plain="true" onclick="openImage()"></a>
 		</div>
 		<div>
 			
@@ -149,8 +194,8 @@
 	    			<span  class="lab">商品类型：</span><input id="typeName" class="easyui-combobox" name="tid"
     				data-options="valueField:'id',textField:'text',url:'getdata'"><br>
 	    			<span  class="lab">商品的尺寸：</span><input id="addsize" class="easyui-textbox" name="size"><br>
-	    			<span  class="lab">商品图片：</span><input id="addimage" class="easyui-filebox" name="image" data-options="prompt:'Choose a file...'" style="width:50%"><br>
-	    			<span  class="lab">商品详情：</span><input id="typeimage" class="easyui-filebox" name="msgImage" data-options="prompt:'Choose a file...',separator:';',multiple:true" style="width:50%"><br>
+	    			<span  class="lab">商品图片：</span><input id="addimage" class="easyui-filebox" name="image1" data-options="prompt:'Choose a file...'" style="width:50%"><br>
+	    			<span  class="lab">商品详情：</span><input id="typeimage" class="easyui-filebox" name="msgImage1" data-options="prompt:'Choose a file...',separator:';',multiple:true" style="width:50%"><br>
 	    		</form>
 			</div>
 			<div data-options="region:'south',border:false" style="text-align:right;padding:5px 0 0;">
@@ -180,6 +225,26 @@
 			</div>
 			<div data-options="region:'south',border:false" style="text-align:right;padding:5px 0 0;">
 				<a onclick="updateGoods()" class="easyui-linkbutton" data-options="iconCls:'icon-ok'" href="javascript:void(0)"  style="width:80px">保存</a>
+				<a class="easyui-linkbutton" data-options="iconCls:'icon-cancel'" href="javascript:void(0)" onclick="$('E').window('close')" style="width:80px">取消</a>
+			</div>
+		</div>
+	</div>
+	
+	
+	<div id="AI" class="easyui-window" 
+		title="添加商品图片" data-options="iconCls:'icon-save',closed:true" 
+		style="width:450px;height:375px;padding:5px;">
+		<div class="easyui-layout" data-options="fit:true">
+			<div data-options="region:'center'" style="padding:10px;text-align: center">
+				<form id="adimg" method="post" action="addimage">
+					<input  id="addname" class="easyui-textbox" name="id" type="hidden">
+	    			<span  class="lab">商品名称：</span><input  id="addname" class="easyui-textbox" name="name"><br>
+	    			<span  class="lab">商品颜色：</span><input  id="addcolor" class="easyui-textbox" name="color"><br>
+	    			<span  class="lab">商品图片：</span><input id="addimage" class="easyui-filebox" name="path" data-options="prompt:'Choose a file...'" style="width:50%"><br>
+	    		</form>
+			</div>
+			<div data-options="region:'south',border:false" style="text-align:right;padding:5px 0 0;">
+				<a onclick="addimage()" class="easyui-linkbutton" data-options="iconCls:'icon-ok'" href="javascript:void(0)"  style="width:80px">保存</a>
 				<a class="easyui-linkbutton" data-options="iconCls:'icon-cancel'" href="javascript:void(0)" onclick="$('E').window('close')" style="width:80px">取消</a>
 			</div>
 		</div>

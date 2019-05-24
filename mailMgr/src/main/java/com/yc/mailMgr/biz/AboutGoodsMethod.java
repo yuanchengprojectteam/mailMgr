@@ -1,11 +1,16 @@
 package com.yc.mailMgr.biz;
 
+import java.io.IOException;
 import java.util.List;
 
 import javax.annotation.Resource;
 
+import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
+import org.springframework.web.multipart.MultipartFile;
 
+import com.aliyun.oss.ClientException;
+import com.aliyun.oss.OSSException;
 import com.yc.mailMgr.bean.Goods;
 import com.yc.mailMgr.bean.GoodsExample;
 import com.yc.mailMgr.bean.Goodsmsg;
@@ -43,6 +48,9 @@ public class AboutGoodsMethod {
 	
 	@Resource
 	QueryNewAdd qna;
+	
+	@Autowired
+	OssUtil oss;
 
 	public int byTnameQueryTid(String typeName) {
 		// TODO Auto-generated method stub
@@ -51,27 +59,6 @@ public class AboutGoodsMethod {
 		return tm.selectByExample(ge).get(0).getId();
 	}
 
-	public int insertGoods(Goods good) {
-		// TODO Auto-generated method stub
-		String regtime = qna.formatTime();
-		good.setRegtime(regtime);
-		int i = gm.insert(good);
-		Goodsmsg msg = new Goodsmsg();
-		Goods goods = qna.queryNewGoods();
-		msg.setColor(goods.getColor());
-		msg.setGid(goods.getId());
-		msg.setSid(goods.getSid());
-		msg.setSize(goods.getSize());
-		msg.setTid(goods.getTid());
-		gmsgM.insert(msg);
-		
-		Image image = new Image();
-		msg = qna.queryNewGoodsmsg();
-		image.setGid(msg.getId());
-		image.setPath(good.getMsgImage());
-		im.insert(image);
-		return i;
-	}
 
 	public Shop byUidQueryShop(int uid) {
 		// TODO Auto-generated method stub
@@ -159,6 +146,53 @@ public class AboutGoodsMethod {
 		tm.updateByExampleSelective(gtype, ge);
 		
 	}
+
+	public int insertGoods(Goods good, MultipartFile file, MultipartFile file1) throws OSSException, ClientException, IOException {
+		// TODO Auto-generated method stub
+		
+			String s = oss.upload(file, 2);
+			good.setImage(s);
+			gm.insert(good);
+			
+			/*GoodsExample ge1 = new GoodsExample();
+			String name1 = good.getName();
+			int sid1 = good.getSid();
+			ge1.createCriteria().andNameEqualTo(name1).andSidEqualTo(sid1);
+			List<Goods> list1 = gm.selectByExample(ge1);
+			Goodsmsg msg1 = new Goodsmsg();
+			msg1.setColor(good.getColor());
+			msg1.setGid(list1.get(0).getId());
+			msg1.setSid(sid);
+			msg1.setTid(list1.get(0).getTid());
+			msg1.setSize(good.getSize());
+			gmsgM.insert(msg1);*/
+	
+		return 0;
+	}
+
+
+	public void addImage(Goods good, MultipartFile file) throws OSSException, ClientException, IOException {
+		// TODO Auto-generated method stub
+		String s = oss.upload(file, 2);
+		Image image = new Image();
+		image.setGid(good.getId());
+		image.setPath(s);
+		im.insert(image);
+		
+	}
+
+
+	/*public void upFile(MultipartFile file, MultipartFile file1, String name, User user) throws OSSException, ClientException, IOException {
+		// TODO Auto-generated method stub
+		
+		String s = oss.upload(file1, 2);
+		String s1 = oss.upload(file, 2);
+		
+		GoodsExample ge = new GoodsExample();
+		
+		//System.out.println("====================="+s+":"+s1);
+		
+	}*/
 	
 	
 
