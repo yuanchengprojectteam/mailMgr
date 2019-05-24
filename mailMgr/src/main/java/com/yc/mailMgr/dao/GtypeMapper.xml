@@ -165,7 +165,7 @@
       SELECT LAST_INSERT_ID()
     </selectKey>
     insert into gtype (name, pid,sunid)
-    values (#{name,jdbcType=VARCHAR}, #{pid,jdbcType=INTEGER}, , #{sunid,jdbcType=INTEGER})
+    values (#{name,jdbcType=VARCHAR}, #{pid,jdbcType=INTEGER},#{sunid,jdbcType=INTEGER})
   </insert>
   <insert id="insertSelective" parameterType="com.yc.mailMgr.bean.Gtype">
     <!--

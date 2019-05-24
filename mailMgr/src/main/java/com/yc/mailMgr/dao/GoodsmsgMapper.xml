@@ -152,7 +152,7 @@
     insert into goodsmsg (color, sid, size, 
       tid, gid)
     values (#{color,jdbcType=VARCHAR}, #{sid,jdbcType=INTEGER}, #{size,jdbcType=VARCHAR}, 
-      #{tid,jdbcType=INTEGER}, # #{gid,jdbcType=INTEGER})
+      #{tid,jdbcType=INTEGER}, #{gid,jdbcType=INTEGER})
   </insert>
   <insert id="insertSelective" parameterType="com.yc.mailMgr.bean.Goodsmsg">
     <!--

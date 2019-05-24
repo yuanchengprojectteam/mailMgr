@@ -15,8 +15,8 @@
 	 var _menus = {"menus":[
 						{"menuid":"1","icon":"icon-sys","menuname":"商品",
 							"menus":[
-									{"menuid":"12","menuname":"商品管理","icon":"icon-add","url":"addGoods.html"},
-									{"menuid":"13","menuname":"类别管理","icon":"icon-users","url":"addgoodstype.html"},
+								{"menuid":"12","menuname":"商品管理","icon":"icon-add","url":"addGoods"},
+								{"menuid":"13","menuname":"类别管理","icon":"icon-users","url":"addGoodsType"},
 									{"menuid":"14","menuname":"热门商品","icon":"icon-role","url":"upanddown.html"},
 									
 								]
@@ -24,9 +24,10 @@
 							"menus":[{"menuid":"21","menuname":"订单管理","icon":"icon-nav","url":"orderMgr"}
 									
 								]
+
 						},{"menuid":"56","icon":"icon-sys","menuname":"退货管理",
-							"menus":[{"menuid":"31","menuname":"订单售后","icon":"icon-nav","url":"WaitDeal"},
-									{"menuid":"32","menuname":"售后订单","icon":"icon-nav","url":"AllReturn"}
+							"menus":[{"menuid":"31","menuname":"订单售后","icon":"icon-nav","url":"WaitDeal?sid=${shop.id}"},
+									{"menuid":"32","menuname":"售后订单","icon":"icon-nav","url":"AllReturn?sid=${shop.id}"}
 								]
 						},{"menuid":"28","icon":"icon-sys","menuname":"评价管理",
 							"menus":[{"menuid":"41","menuname":"商品评价","icon":"icon-nav","url":"PingJia.html"},
