@@ -1,4 +1,4 @@
-package com.yc.mailMgr;
+package com.yc.mailMgr.config;
 
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;

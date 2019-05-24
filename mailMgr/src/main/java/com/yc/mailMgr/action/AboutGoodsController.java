@@ -8,6 +8,7 @@ import java.util.Map;
 
 import javax.annotation.Resource;
 
+import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.transaction.annotation.Transactional;
 import org.springframework.web.bind.annotation.RequestMapping;
@@ -35,6 +36,7 @@ import com.yc.mailMgr.bean.successMsg;
 import com.yc.mailMgr.biz.AboutGoodsMethod;
 import com.yc.mailMgr.dao.GoodsMapper;
 import com.yc.mailMgr.dao.GtypeMapper;
+import com.yc.mailMgr.util.OssUtil;
 
 @Controller
 @Transactional
@@ -52,6 +54,8 @@ public class AboutGoodsController {
 	@Resource
 	AboutGoodsMethod agm;
 
+	@Autowired
+	OssUtil ou;
 
 	@RequestMapping("addGoods")
 	public String addGoods() {

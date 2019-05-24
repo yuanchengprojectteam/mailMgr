@@ -15,6 +15,7 @@ import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.InitBinder;
 import org.springframework.web.bind.annotation.ModelAttribute;
 import org.springframework.web.bind.annotation.PostMapping;
+import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.ResponseBody;
 import org.springframework.web.bind.annotation.SessionAttributes;
@@ -52,6 +53,11 @@ public class MgrIndexController {
 		model.addAttribute("user", user);
 	}
 	
+	@RequestMapping("hotGoods")
+	public String HotGoods() {
+		return "HootGoods";
+	}
+	
 	@PostMapping("tologin")
 	public String  Login(@ModelAttribute @Valid User u, Errors errors, Model model, String check,
 			HttpServletRequest request, HttpServletResponse response) {
@@ -76,8 +82,9 @@ public class MgrIndexController {
 		}
 		
 		try {
+			System.out.println("============================"+u);
 			User  user=uBiz.login(u);
-			System.out.println("================");
+			System.out.println("+======================================"+user);
 			ShopExample  example=new ShopExample();
 			example.createCriteria().andUidEqualTo(user.getId());
 			List<Shop> shop=sMapper.selectByExample(example);
