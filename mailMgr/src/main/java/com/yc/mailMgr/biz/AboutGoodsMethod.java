@@ -183,6 +183,19 @@ public class AboutGoodsMethod {
 	}
 
 
+	public boolean queryMany(String name) {
+		// TODO Auto-generated method stub
+		boolean flag = false;
+		GtypeExample ge = new GtypeExample();
+		ge.createCriteria().andNameEqualTo(name);
+		List<Gtype> list = tm.selectByExample(ge);
+		if(list.size()>0) {
+			flag = true;
+		}
+		return flag;
+	}
+
+
 	/*public void upFile(MultipartFile file, MultipartFile file1, String name, User user) throws OSSException, ClientException, IOException {
 		// TODO Auto-generated method stub
 		

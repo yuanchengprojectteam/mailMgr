@@ -136,7 +136,10 @@ public class AboutGoodsController {
 		int tid = good.getTid();
 		gtype.setName(name);
 		gtype.setSunid(tid);
-		agm.insertGtype(gtype);
+		boolean flag = agm.queryMany(name);
+		if(!flag) {
+			agm.insertGtype(gtype);
+		}
 		msg.setMsg("添加成功！");
 		return msg;
 	}
@@ -208,11 +211,11 @@ public class AboutGoodsController {
 	@RequestMapping("saveType")
 	@ResponseBody
 	public successMsg saveType(String newName,int pid) {
-		//System.out.println(newName+":"+pid);
+		System.out.println(newName+":"+pid);
 		successMsg msg = new successMsg();
 		Gtype gtype = new Gtype();
+		
 		Integer sunid = agm.querySunid(pid);
-		//System.out.println("============="+sunid);
 		gtype.setName(newName);
 		gtype.setPid(pid);
 		gtype.setSunid(sunid);
