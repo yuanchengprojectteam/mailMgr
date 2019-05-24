@@ -27,6 +27,7 @@ import com.yc.mailMgr.dao.GoodsmsgMapper;
 import com.yc.mailMgr.dao.GtypeMapper;
 import com.yc.mailMgr.dao.ImageMapper;
 import com.yc.mailMgr.dao.ShopMapper;
+import com.yc.mailMgr.util.OssUtil;
 
 @Service
 public class AboutGoodsMethod {

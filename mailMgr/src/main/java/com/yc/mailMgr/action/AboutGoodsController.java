@@ -131,6 +131,12 @@ public class AboutGoodsController {
 		good.setSid(shop.getId());
 		agm.insertGoods(good,file,file1);
 		
+		Gtype gtype = new Gtype();
+		String name = good.getName();
+		int tid = good.getTid();
+		gtype.setName(name);
+		gtype.setSunid(tid);
+		agm.insertGtype(gtype);
 		msg.setMsg("添加成功！");
 		return msg;
 	}
