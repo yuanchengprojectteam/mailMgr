@@ -8,8 +8,8 @@ import com.fasterxml.jackson.annotation.JsonIgnoreProperties;
 
 @Entity
 @Table(name="uorder",catalog="tcmail")
-@JsonIgnoreProperties(value = { "handler" })
-public class Uorder implements java.io.Serializable{
+@JsonIgnoreProperties(value = {"handler"})
+public class Uorder  implements java.io.Serializable{
 	private static final long serialVersionUID = 1L;
 	private Integer id;
 	private Integer uid;
@@ -32,8 +32,9 @@ public class Uorder implements java.io.Serializable{
 	private User user;
 	/*private Orderdetail details;*/
 	
-	private String endtime;
 	
+	
+	private String endtime;
 	
 	@Transient
 	public String getEndtime() {
@@ -42,9 +43,26 @@ public class Uorder implements java.io.Serializable{
 	public void setEndtime(String endtime) {
 		this.endtime = endtime;
 	}
+	
+	
+	
+
 	@Column(name="visiable",length=11)
 	public String getVisiable() {
 		return visiable;
+	}
+	
+	public Uorder() {}
+	
+	public Uorder(Integer id, Integer uid, String paystatu,
+			 String ordertime, Double totalprice,  String visiable) {
+		super();
+		this.id = id;
+		this.uid = uid;
+		this.paystatu = paystatu;
+		this.ordertime = ordertime;
+		this.totalprice = totalprice;
+		this.visiable = visiable;
 	}
 	@Transient
 	public User getUser() {

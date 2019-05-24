@@ -1,10 +1,18 @@
 package com.yc.mailMgr.bean;
 
+import java.sql.Date;
+import java.util.List;
+import java.util.Set;
+
 import javax.persistence.*;
+
+import com.fasterxml.jackson.annotation.JsonIgnoreProperties;
 
 @Entity
 @Table(name="goods",catalog="tcmail")
-public class Goods {
+@JsonIgnoreProperties(value = {"handler"})
+public class Goods  implements java.io.Serializable{
+	private static final long serialVersionUID = 1L;
 	private Integer id;
 	private Integer tid;
 	private Integer sid;
@@ -20,10 +28,19 @@ public class Goods {
 	private Shop shop;
 	private Gtype type;
 	private Car car;
-	private String typeName;
+	private List<Goodsmsg> listGmsg;
+	private String sum;
 	private String msgImage;
+	private String typeName;
 	
-	
+	@Transient
+	public String getTypeName() {
+		return typeName;
+	}
+
+	public void setTypeName(String typeName) {
+		this.typeName = typeName;
+	}
 	
 	@Transient
 	public String getMsgImage() {
@@ -33,15 +50,26 @@ public class Goods {
 	public void setMsgImage(String msgImage) {
 		this.msgImage = msgImage;
 	}
+	
+	
+	@Transient
+	public String getSum() {
+		return sum;
+	}
+
+	public void setSum(String sum) {
+		this.sum = sum;
+	}
 
 	@Transient
-	public String getTypeName() {
-		return typeName;
+	public List<Goodsmsg> getListGmsg() {
+		return listGmsg;
 	}
 
-	public void setTypeName(String typeName) {
-		this.typeName = typeName;
+	public void setListGmsg(List<Goodsmsg> listGmsg) {
+		this.listGmsg = listGmsg;
 	}
+
 
 	@Id
 	@GeneratedValue(strategy=GenerationType.IDENTITY)
@@ -153,6 +181,7 @@ public class Goods {
 		this.car = car;
 	}
 	
+
 	@Column(name="regtime",length=50)
 	public String getRegtime() {
 		return regtime;

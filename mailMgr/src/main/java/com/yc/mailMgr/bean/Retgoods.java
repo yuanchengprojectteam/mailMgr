@@ -3,8 +3,11 @@ package com.yc.mailMgr.bean;
 import javax.persistence.*;
 import javax.validation.constraints.NotEmpty;
 
+import com.fasterxml.jackson.annotation.JsonIgnoreProperties;
+
 @Entity
 @Table(name="retgoods",catalog="tcmail")
+@JsonIgnoreProperties(value = {"handler"})
 public class Retgoods {
 	private Integer id;
 	private Integer odetailid;

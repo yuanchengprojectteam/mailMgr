@@ -1,6 +1,5 @@
 package com.yc.mailMgr.bean;
 
-
 import javax.persistence.*;
 import javax.validation.constraints.NotEmpty;
 
@@ -8,8 +7,8 @@ import com.fasterxml.jackson.annotation.JsonIgnoreProperties;
 
 @Entity
 @Table(name="address",catalog="tcmail")
-@JsonIgnoreProperties(value = { "handler" })
-public class Address implements java.io.Serializable{
+@JsonIgnoreProperties(value = {"handler"})
+public class Address  implements java.io.Serializable{
 	private static final long serialVersionUID = 1L;
 	private Integer id;
 	private Integer uid;
@@ -27,8 +26,17 @@ public class Address implements java.io.Serializable{
 	private String city;
 	private String district;
 	
+	private User user;
 	
 	
+	
+	@Transient
+	public User getUser() {
+		return user;
+	}
+	public void setUser(User user) {
+		this.user = user;
+	}
 	@Transient
 	public String getProvince() {
 		return province;

@@ -34,7 +34,7 @@ public class MgrOrderDealBiz {
 			order.setEndtime(null);
 		}
 		Page<Uorder>  page = PageHelper.startPage(currentPage, pageSize);
-		uom.selectOrderBy(order);
+		List<Uorder> ret =uom.selectOrderBy(order);
 		PageData  pageData = new PageData();
 		pageData.setRows(page.getResult());
 		pageData.setTotal(page.getTotal());

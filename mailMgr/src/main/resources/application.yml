@@ -1,10 +1,10 @@
 spring:
   # Spring数据源配置
   datasource:
-    url: jdbc:mysql://47.102.133.31/tcmail
+    url: jdbc:mysql://localhost/tcmail
     driverClassName: com.mysql.jdbc.Driver
     username: root
-    password: 12345678
+    password: a
   session:
     store-type: none
     
