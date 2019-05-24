@@ -33,21 +33,21 @@
                <th data-options="field:'id',width:80,align:'left'">订单编号</th>
                 <th data-options="field:'goodsName',width:250,align:'left' ,formatter: goodsData ">商品</th>
                 <th data-options="field:'totalprice',width:80,align:'left'">订单金额</th>
-                <th data-options="field:'ordertime',width:100,align:'left'">下单时间</th>
-                <th data-options="field:'addrName',width:350,align:'left' ,formatter: function(val,row){
+                 <th data-options="field:'ordertime',width:100,align:'left'">下单时间</th>
+               <!--   <th data-options="field:'addrName',width:350,align:'left' ,formatter: function(val,row){
                 	if(row.addr.recvaddr && row.addr.detailaddr){
                 	return row.addr.recvaddr+row.addr.detailaddr;
                 	}
-                }">配送地址</th>
-                <th data-options="field:'account',width:80,align:'left' ,formatter:function(val,row){
+                }">配送地址</th> -->
+                 <!-- <th data-options="field:'phone',width:180,align:'left',formatter:function(val,row){
+                if (row.addr.phone){
+               return  row.addr.phone;
+           		}}">联系方式 </th> -->
+               <th data-options="field:'account',width:80,align:'left' ,formatter:function(val,row){
                 if (row.user.account){
-               return   row.user.account;
-           		}}">买家 </th>
-                <th data-options="field:'phone',width:180,align:'left',formatter:  function(val,row){
-                	if(row.addr.phone && row.addr.phone){
-                	return row.addr.phone;
-                	}
-                }">联系方式 </th>
+               return  row.user.account;
+           		}}">买家 </th> 
+               
                 <th data-options="field:'orderstatu',width:80,align:'left'">订单状态</th>
                 <th data-options="field:'paystatu',width:80,align:'left'">支付状态</th>  
                 <th data-options="field:'ID',width:80,align:'left' ,formatter:formatOper">操作</th>

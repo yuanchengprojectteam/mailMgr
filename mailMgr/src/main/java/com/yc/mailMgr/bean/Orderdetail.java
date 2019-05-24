@@ -6,7 +6,7 @@ import com.fasterxml.jackson.annotation.JsonIgnoreProperties;
 
 @Entity
 @Table(name="orderdetail",catalog="tcmail")
-@JsonIgnoreProperties(value = { "handler" })
+@JsonIgnoreProperties(value = {"handler"})
 public class Orderdetail implements java.io.Serializable{
 	private static final long serialVersionUID = 1L;
 	private Integer id;

@@ -9,8 +9,8 @@ import com.fasterxml.jackson.annotation.JsonIgnoreProperties;
 
 @Entity
 @Table(name="user",catalog="tcmail")
-@JsonIgnoreProperties(value = { "handler" })
-public class User implements java.io.Serializable{
+@JsonIgnoreProperties(value = {"handler"})
+public class User  implements java.io.Serializable{
 	private static final long serialVersionUID = 1L;
 	private Integer id;
 	private String name;

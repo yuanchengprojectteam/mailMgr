@@ -8,8 +8,8 @@ import com.fasterxml.jackson.annotation.JsonIgnoreProperties;
 
 @Entity
 @Table(name="shop",catalog="tcmail")
-@JsonIgnoreProperties(value = { "handler" })
-public class Shop implements java.io.Serializable{
+@JsonIgnoreProperties(value = {"handler"})
+public class Shop  implements java.io.Serializable{
 	private static final long serialVersionUID = 1L;
 	private Integer id;
 	private Integer uid;
@@ -109,6 +109,5 @@ public class Shop implements java.io.Serializable{
 	public void setUser(User user) {
 		this.user = user;
 	}
-   
-   	
+  
 }

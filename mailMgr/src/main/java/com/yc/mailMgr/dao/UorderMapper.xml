@@ -18,8 +18,8 @@
     <result column="totalprice" jdbcType="DOUBLE" property="totalprice" />
     <result column="recivetime" jdbcType="VARCHAR" property="recivetime" />
     <result column="visiable" jdbcType="VARCHAR" property="visiable" />
-    <association property="addr" column="aid" select="com.yc.mailMgr.dao.AddressMapper.selectWithAddr" fetchType="lazy"></association>
 	<association property="user" column="uid" select="com.yc.mailMgr.dao.UserMapper.selectById" fetchType="lazy"></association>
+    <association property="addr" column="aid" select="com.yc.mailMgr.dao.AddressMapper.selectWithAddr" fetchType="lazy"></association>
 	<collection property="details" column="id" 
 		    select="com.yc.mailMgr.dao.OrderdetailMapper.selectWithGoods" 
 		    fetchType="lazy">
